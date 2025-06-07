@@ -1,0 +1,38 @@
+{
+  "name": "starter-kit",
+  "version": "1.0.0",
+  "description": "Starter kit for building a web app",
+  "private": true,
+  "packageManager": "pnpm@10.6.3",
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo node_modules && rm -rf .turbo .cache node_modules",
+    "clean:workspaces": "turbo run clean",
+    "dev": "turbo run dev",
+    "start": "turbo run start",
+    "build": "turbo run build",
+    "build:prod": "turbo run build && pnpm codegen",
+    "build:packages": "turbo run build --filter='./packages/*'",
+    "build:tooling": "turbo run build --filter='./tooling/*'",
+    "build:apps": "turbo run build --filter='./apps/*' && pnpm codegen",
+    "build:libs": "pnpm build:tooling && pnpm build:packages",
+    "codegen": "graphql-codegen --config codegen.ts",
+    "typecheck": "turbo run typecheck",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "rimraf": "catalog:",
+    "tsx": "catalog:",
+    "turbo": "catalog:",
+    "typescript": "catalog:"
+  },
+  "dependencies": {
+    "dotenv": "catalog:",
+    "dotenv-cli": "catalog:",
+    "tsup": "catalog:",
+    "zod": "catalog:"
+  }
+}
