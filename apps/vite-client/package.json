@@ -10,13 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "catalog:",
-    "react-dom": "catalog:"
+    "react": "catalog:react19",
+    "react-dom": "catalog:react19"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
-    "@types/react": "catalog:",
-    "@types/react-dom": "catalog:",
+    "@types/react": "catalog:react19",
+    "@types/react-dom": "catalog:react19",
     "@vitejs/plugin-react-swc": "^3.9.0",
     "eslint": "catalog:",
     "eslint-plugin-react-hooks": "^5.2.0",
