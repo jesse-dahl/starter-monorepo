@@ -1,0 +1,9 @@
+{
+  "extends": "@flote/tsconfig/internal-package.json",
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "rootDir": "./src"
+  },
+  "include": ["*.ts", "src", "esbuild.config.js"],
+  "exclude": ["node_modules"]
+}

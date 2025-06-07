@@ -20,7 +20,7 @@ catalog:
   "@graphql-codegen/typescript-react-query": ^6.1.0
 
   # Dev tooling
-  "@types/node": "^22.15.20"
+  "@types/node": "^22.15.30"
   eslint: ^9.23.0
   prettier: ^3.5.3
   rimraf: ^6.0.1

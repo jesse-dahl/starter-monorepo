@@ -1,0 +1,5 @@
+{
+  "extends": "@starter-kit/tsconfig/base.json",
+  "include": ["."],
+  "exclude": ["node_modules"]
+}
