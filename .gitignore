@@ -10,6 +10,8 @@ coverage
 test-logger.js
 test-graphql-logging.js
 lighthouse-reports
+playwright-report/
+test-results/
 
 # next.js
 .next/
@@ -30,7 +32,6 @@ apps/expo/android
 # production
 build
 false
-**/false/
 
 # misc
 .DS_Store

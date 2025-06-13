@@ -1,9 +1,26 @@
 {
   "name": "@starter-kit/api",
   "version": "1.0.0",
+  "private": true,
+  "type": "module",
   "main": "src/routes.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./routes": "./dist/routes.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "pnpm with-env tsx watch src/index.ts",
+    "start": "pnpm with-env node --inspect ./dist/index.js",
+    "clean": "git clean -xdf .cache .turbo node_modules && rm -rf .turbo .cache node_modules dist false",
+    "build": "pnpm with-env tsup ./src/index.ts ./src/routes.ts --format esm --target node16 --dts --outDir ./dist",
+    "typecheck": "tsc --noEmit",
+    "with-env": "dotenv -e ../../.env --"
+  },
   "dependencies": {
     "@starter-kit/env": "workspace:*",
+    "@starter-kit/types": "workspace:*",
+    "fastify": "catalog:",
     "fastify-plugin": "catalog:",
     "zod": "catalog:",
     "@fastify/swagger": "catalog:",
@@ -11,6 +28,7 @@
     "fastify-type-provider-zod": "catalog:"
   },
   "devDependencies": {
+    "@starter-kit/tsconfig": "workspace:*",
     "typescript": "catalog:"
   }
 }

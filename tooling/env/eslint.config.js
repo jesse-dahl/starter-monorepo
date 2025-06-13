@@ -1,4 +1,4 @@
-import baseConfig from "@flote/eslint-config/base";
+import baseConfig from "@starter-kit/eslint-config/base";
 
 /** @type {import('typescript-eslint').Config} */
 export default [

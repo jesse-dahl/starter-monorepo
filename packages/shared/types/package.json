@@ -4,12 +4,16 @@
   "private": true,
   "type": "module",
   "exports": {
+    "./employee": {
+      "types": "./dist/employee/index.d.ts",
+      "default": "./dist/employee/index.js"
+    }
   },
   "license": "MIT",
   "scripts": {
-    "build": "pnpm with-env tsup ./brand/index.ts ./product/index.ts ./category/index.ts ./address/index.ts ./employee/index.ts ./payment/index.ts ./signnow/index.ts ./embed/index.ts --format esm --target node16 --dts --outDir ./dist",
+    "build": "pnpm with-env tsup ./employee/index.ts --format esm --target node16 --dts --outDir ./dist",
     "clean": "git clean -xdf .cache .turbo dist node_modules && rm -rf .turbo .cache dist",
-    "dev": "pnpm with-env tsup ./brand/index.ts ./product/index.ts ./category/index.ts ./address/index.ts ./employee/index.ts ./payment/index.ts ./signnow/index.ts ./embed/index.ts --format esm --target node16 --dts --outDir dist --watch",
+    "dev": "pnpm with-env tsup ./employee/index.ts --format esm --target node16 --dts --outDir dist --watch",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
     "with-env": "dotenv -e ../../.env --",
