@@ -26,6 +26,8 @@ const serverSchema = {
   REDIS_SSL: z.boolean().optional(),
   REDIS_TLS: z.boolean().optional(),
   REDIS_DB: z.string().optional(),
+  // comma separated list of allowed origins for CORS in prod (e.g. "https://app.example.com,https://admin.example.com")
+  CORS_ALLOWED_ORIGINS: z.string().optional(),
   LOG_TARGET: z.enum(['stdout', 'logtail']).default('stdout'),
   LOGTAIL_SOURCE_TOKEN: z.string().optional(),
   LOGTAIL_ENDPOINT: z.string().optional(),
@@ -83,6 +85,7 @@ export const env = () => createEnv({
     REDIS_SSL: process.env.REDIS_SSL,
     REDIS_TLS: process.env.REDIS_TLS,
     REDIS_DB: process.env.REDIS_DB,
+    CORS_ALLOWED_ORIGINS: process.env.CORS_ALLOWED_ORIGINS,
     // logging
     LOG_TARGET: process.env.LOG_TARGET,
     LOG_HTTP_URL: process.env.LOG_HTTP_URL,

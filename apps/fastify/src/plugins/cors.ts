@@ -10,34 +10,39 @@ const fastifyLogger = createLogger({
 });
 
 async function corsPlugin(app: FastifyInstance) {
+  const { NODE_ENV, CORS_ALLOWED_ORIGINS } = env();
+
+  const allowedOrigins = (CORS_ALLOWED_ORIGINS || '')
+    .split(',')
+    .map((o) => o.trim())
+    .filter(Boolean);
+
   app.register(cors, {
     origin: (origin, cb) => {
+      // Non-browser requests
       if (!origin) return cb(null, true);
 
-      if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
+      // Always allow localhost during development for convenience
+      if (NODE_ENV !== 'production' && (origin.includes('localhost') || origin.includes('127.0.0.1'))) {
         return cb(null, true);
       }
 
-      if (origin.startsWith('https://')) {
-        fastifyLogger.info('Request from domain', {
-          origin,
-          timestamp: new Date().toISOString(),
-        });
+      // Explicitly allow origins from env var in any environment
+      if (allowedOrigins.some((allowed) => origin.startsWith(allowed))) {
         return cb(null, true);
       }
 
-      if (env().NODE_ENV === 'production' && origin.startsWith('http://')) {
-        fastifyLogger.warn('Blocked insecure HTTP request', {
-          blockedOrigin: origin,
-        });
-        return cb(new Error('HTTPS required'), false);
+      // Reject anything else in production
+      if (NODE_ENV === 'production') {
+        fastifyLogger.warn('Blocked CORS request from disallowed origin', { origin });
+        return cb(new Error('Origin not allowed'), false);
       }
 
-      // Allow HTTP in development
+      // Fallback to allow during non-production when not matched (useful for staging)
       return cb(null, true);
     },
     credentials: true, // Allow cookies to be sent
-    methods: ['GET', 'POST', 'OPTIONS'],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD'],
     allowedHeaders: [
       'Content-Type',
       'Authorization',
@@ -45,6 +50,7 @@ async function corsPlugin(app: FastifyInstance) {
       'Accept',
       'Origin',
     ],
+    maxAge: 86400, // 24 hours
   });
 }
 

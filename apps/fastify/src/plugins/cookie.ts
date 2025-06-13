@@ -4,9 +4,20 @@ import type { FastifyInstance } from 'fastify';
 import { env } from '@starter-kit/env';
 
 async function cookiePlugin(app: FastifyInstance) {
+  const secret = env().COOKIE_SECRET;
+  if (!secret) {
+    throw new Error('COOKIE_SECRET env var must be set');
+  }
+
   app.register(cookie, {
-    secret: env().COOKIE_SECRET,
+    secret,
     hook: 'onRequest',
+    parseOptions: {
+      httpOnly: true,
+      sameSite: 'lax',
+      path: '/',
+      secure: process.env.NODE_ENV === 'production',
+    },
   });
 }
 

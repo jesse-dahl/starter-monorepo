@@ -1,4 +1,5 @@
 import fp from 'fastify-plugin';
+import { env } from '@starter-kit/env';
 import swagger from '@fastify/swagger';
 import swaggerUi from '@fastify/swagger-ui';
 import type { FastifyInstance } from 'fastify';
@@ -13,7 +14,10 @@ async function swaggerPlugin(app: FastifyInstance) {
     },
   });
 
-  app.register(swaggerUi, { routePrefix: '/docs' });
+  // Expose Swagger UI only outside of production for security
+  if (env().NODE_ENV !== 'production') {
+    app.register(swaggerUi, { routePrefix: '/docs' });
+  }
 }
 
 export default fp(swaggerPlugin, { name: 'swagger' }); 
