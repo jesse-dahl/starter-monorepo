@@ -31,6 +31,7 @@ const serverSchema = {
   LOGTAIL_ENDPOINT: z.string().optional(),
   LOG_HTTP_URL: z.string().optional(),
   LOG_HTTP_TOKEN: z.string().optional(),
+  STRIPE_SECRET_KEY: z.string().optional(),
 } as const;
 
 const clientSchema = {
@@ -53,19 +54,26 @@ export const env = () => createEnv({
   runtimeEnvStrict: {
     // server
     NODE_ENV: process.env.NODE_ENV,
+    // database
     DIRECT_DATABASE_URL: process.env.DIRECT_DATABASE_URL,
     POOLING_DATABASE_URL: process.env.POOLING_DATABASE_URL,
+    // supabase
     SUPABASE_DB_URL: process.env.SUPABASE_DB_URL,
     SUPABASE_URL: process.env.SUPABASE_URL,
     SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
     SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
     SUPABASE_JWT_SECRET: process.env.SUPABASE_JWT_SECRET,
+    // fastify
     LOG_LEVEL: process.env.LOG_LEVEL,
     FASTIFY_PORT: process.env.FASTIFY_PORT,
     FASTIFY_HOST: process.env.FASTIFY_HOST,
+    // cookies
     COOKIE_SECRET: process.env.COOKIE_SECRET,
+    // resend
     RESEND_API_KEY: process.env.RESEND_API_KEY,
+    // auth
     AUTH_COOKIE_KEY: process.env.AUTH_COOKIE_KEY,
+    // redis
     REDIS_URL: process.env.REDIS_URL,
     REDIS_HOST: process.env.REDIS_HOST,
     REDIS_PORT: process.env.REDIS_PORT,
@@ -75,6 +83,7 @@ export const env = () => createEnv({
     REDIS_SSL: process.env.REDIS_SSL,
     REDIS_TLS: process.env.REDIS_TLS,
     REDIS_DB: process.env.REDIS_DB,
+    // logging
     LOG_TARGET: process.env.LOG_TARGET,
     LOG_HTTP_URL: process.env.LOG_HTTP_URL,
     LOG_HTTP_TOKEN: process.env.LOG_HTTP_TOKEN,
@@ -85,6 +94,8 @@ export const env = () => createEnv({
     VITE_API_URL: process.env.VITE_API_URL,
     VITE_LOG_ENDPOINT: process.env.VITE_LOG_ENDPOINT,
     VITE_LOG_LEVEL: process.env.VITE_LOG_LEVEL,
+    // stripe
+    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
   },
   clientPrefix: 'VITE_',
   emptyStringAsUndefined: true,

@@ -1,0 +1,33 @@
+{
+  "name": "@starter-kit/stripe",
+  "version": "1.0.0",
+  "description": "Stripe integration package for starter-kit",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "exports": {
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "default": "./dist/client.js"
+    },
+    "./payments": {
+      "types": "./dist/payments.d.ts",
+      "default": "./dist/payments.js"
+    }
+  },
+  "scripts": {
+    "build": "pnpm with-env tsup ./src/client.ts ./src/payments.ts --format esm --target node16 --dts --outDir ./dist",
+    "clean": "git clean -xdf .cache .turbo node_modules && rm -rf .turbo .cache node_modules dist false",
+    "with-env": "dotenv -e ../../.env --",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@starter-kit/env": "workspace:*",
+    "@starter-kit/logger": "workspace:*",
+    "stripe": "^18.2.1"
+  },
+  "devDependencies": {
+    "@starter-kit/tsconfig": "workspace:*",
+    "typescript": "catalog:"
+  }
+}
