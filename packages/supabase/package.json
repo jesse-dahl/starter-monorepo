@@ -1,0 +1,33 @@
+{
+  "name": "@starter-kit/supabase",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "import": "./dist/client.js",
+      "require": "./dist/client.js",
+      "default": "./dist/client.js"
+    }
+  },
+  "scripts": {
+    "build": "pnpm with-env tsup ./src/client.ts --format esm --target node16 --dts --outDir ./dist",
+    "clean": "git clean -xdf .cache .turbo node_modules && rm -rf .turbo .cache node_modules dist false",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@starter-kit/env": "workspace:*",
+    "@starter-kit/logger": "workspace:*",
+    "@supabase/supabase-js": "^2.49.7"
+  },
+  "devDependencies": {
+    "@starter-kit/tsconfig": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

@@ -19,7 +19,9 @@
   },
   "dependencies": {
     "@starter-kit/env": "workspace:*",
+    "@starter-kit/services": "workspace:*",
     "@starter-kit/types": "workspace:*",
+    "@starter-kit/transformers": "workspace:*",
     "fastify": "catalog:",
     "fastify-plugin": "catalog:",
     "zod": "catalog:",
