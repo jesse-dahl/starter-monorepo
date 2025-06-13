@@ -87,18 +87,27 @@ export class ClientLogger {
    * Called when app initializes or config changes
    */
   updateConfig(options: ClientLoggerOptions = {}) {
+    const isBrowser = typeof window !== 'undefined';
+
     // Smart default for endpoint:
     // 1. Use provided endpoint (highest priority)
     // 2. Use VITE_LOG_ENDPOINT if available
     // 3. Use VITE_API_URL + /api/logs if available  
-    // 4. Fall back to current origin + /api/logs (lowest priority)
-    this.endpoint = options.endpoint || 
-                   import.meta.env.VITE_LOG_ENDPOINT ||
-                   (import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api/logs` : `${window.location.origin}/api/logs`);
-    
-    // Use environment variable for log level if not specified
-    const defaultLogLevel = (import.meta.env.VITE_LOG_LEVEL as LogLevel) || 'info';
-    this.minLevel = LOG_LEVELS[options.level || defaultLogLevel];
+    // 4. Fall back to current origin + /api/logs (browser) or just /api/logs (SSR)
+    this.endpoint =
+      options.endpoint ??
+      import.meta.env.VITE_LOG_ENDPOINT ??
+      (import.meta.env.VITE_API_URL
+        ? `${import.meta.env.VITE_API_URL}/api/logs`
+        : isBrowser
+        ? `${window.location.origin}/api/logs`
+        : '/api/logs');
+
+    // Validate and determine minimum log level
+    const envLogLevel = import.meta.env.VITE_LOG_LEVEL as LogLevel | undefined;
+    const defaultLogLevel: LogLevel = envLogLevel && (envLogLevel in LOG_LEVELS) ? (envLogLevel as LogLevel) : 'info';
+
+    this.minLevel = LOG_LEVELS[options.level ?? defaultLogLevel];
     
     this.enableConsole = options.enableConsole ?? (import.meta.env.DEV || import.meta.env.NODE_ENV === 'development');
     this.service = options.service || 'client';
@@ -244,7 +253,42 @@ export class ClientLogger {
       this.batchTimer = null;
     }
 
-    this.sendLogs(logsToSend);
+    // Prefer navigator.sendBeacon for page-unload reliability when available
+    const canUseBeacon = typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function';
+
+    if (canUseBeacon) {
+      this.sendLogsBeacon(logsToSend);
+    } else {
+      this.sendLogs(logsToSend);
+    }
+  }
+
+  /**
+   * Use navigator.sendBeacon to transmit logs without blocking the unload sequence.
+   */
+  private sendLogsBeacon(logs: LogEntry[]) {
+    if (typeof navigator === 'undefined' || typeof navigator.sendBeacon !== 'function') {
+      // Fallback just in case – shouldn't happen because caller guards, but TS likes the check.
+      this.sendLogs(logs);
+      return;
+    }
+
+    logs.forEach((log) => {
+      const payload = JSON.stringify({
+        level: log.level,
+        message: log.message,
+        context: {
+          ...log.context,
+          service: this.service,
+          timestamp: log.timestamp,
+        },
+        hostInfo: log.hostInfo,
+      });
+
+      // sendBeacon requires Blob, ArrayBufferView, etc.  Blob keeps it simple.
+      const blob = new Blob([payload], { type: 'application/json' });
+      navigator.sendBeacon(this.endpoint, blob);
+    });
   }
 
   /**
