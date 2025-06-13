@@ -249,6 +249,9 @@ importers:
       '@starter-kit/env':
         specifier: workspace:*
         version: link:../../tooling/env
+      '@starter-kit/repositories':
+        specifier: workspace:*
+        version: link:../repositories
       '@starter-kit/services':
         specifier: workspace:*
         version: link:../services
