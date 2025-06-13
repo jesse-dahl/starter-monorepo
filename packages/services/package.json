@@ -1,0 +1,36 @@
+{
+  "name": "@starter-kit/services",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "pnpm with-env tsup ./src/index.ts --format esm --target node16 --dts --outDir ./dist",
+    "clean": "git clean -xdf .cache .turbo node_modules && rm -rf .turbo .cache node_modules",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@starter-kit/env": "workspace:*",
+    "@starter-kit/logger": "workspace:*",
+    "@starter-kit/redis": "workspace:*",
+    "@starter-kit/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@starter-kit/tsconfig": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

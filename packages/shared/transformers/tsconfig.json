@@ -1,0 +1,17 @@
+{
+  "extends": "@starter-kit/tsconfig/internal-package.json",
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": false,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "paths": {
+      "@starter-kit/types/user": ["../types/user"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

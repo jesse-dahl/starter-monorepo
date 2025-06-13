@@ -1,23 +1,19 @@
 {
-  "name": "@starter-kit/types",
+  "name": "@starter-kit/transformers",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "exports": {
-    "./employee": {
-      "types": "./dist/employee/index.d.ts",
-      "default": "./dist/employee/index.js"
-    },
-    "./user": {
-      "types": "./dist/user/index.d.ts",
-      "default": "./dist/user/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "license": "MIT",
   "scripts": {
-    "build": "pnpm with-env tsup ./employee/index.ts ./user/index.ts --format esm --target node16 --dts --outDir ./dist",
+    "build": "pnpm with-env tsup ./src/index.ts --format esm --target node16 --dts --outDir ./dist",
     "clean": "git clean -xdf .cache .turbo dist node_modules && rm -rf .turbo .cache dist",
-    "dev": "pnpm with-env tsup ./employee/index.ts ./user/index.ts --format esm --target node16 --dts --outDir dist --watch",
+    "dev": "pnpm with-env tsup ./src/index.ts --format esm --target node16 --dts --outDir dist --watch",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
     "with-env": "dotenv -e ../../.env --",
@@ -25,6 +21,7 @@
   },
   "dependencies": {
     "@starter-kit/env": "workspace:*",
+    "@starter-kit/types": "workspace:*",
     "zod": "catalog:"
   },
   "devDependencies": {

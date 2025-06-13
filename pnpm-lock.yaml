@@ -331,6 +331,59 @@ importers:
         specifier: 'catalog:'
         version: 5.8.3
 
+  packages/services:
+    dependencies:
+      '@starter-kit/env':
+        specifier: workspace:*
+        version: link:../../tooling/env
+      '@starter-kit/logger':
+        specifier: workspace:*
+        version: link:../logger
+      '@starter-kit/redis':
+        specifier: workspace:*
+        version: link:../redis
+      '@starter-kit/types':
+        specifier: workspace:*
+        version: link:../shared/types
+    devDependencies:
+      '@starter-kit/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.3
+
+  packages/shared/transformers:
+    dependencies:
+      '@starter-kit/env':
+        specifier: workspace:*
+        version: link:../../../tooling/env
+      '@starter-kit/types':
+        specifier: workspace:*
+        version: link:../types
+      zod:
+        specifier: 'catalog:'
+        version: 3.25.63
+    devDependencies:
+      '@starter-kit/eslint-config':
+        specifier: workspace:*
+        version: link:../../../tooling/eslint
+      '@starter-kit/prettier-config':
+        specifier: workspace:*
+        version: link:../../../tooling/prettier
+      '@starter-kit/tsconfig':
+        specifier: workspace:*
+        version: link:../../../tooling/typescript
+      eslint:
+        specifier: 'catalog:'
+        version: 9.28.0(jiti@1.21.7)
+      prettier:
+        specifier: 'catalog:'
+        version: 3.5.3
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.3
+
   packages/shared/types:
     dependencies:
       '@starter-kit/env':
