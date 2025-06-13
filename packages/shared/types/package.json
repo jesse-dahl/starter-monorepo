@@ -1,0 +1,31 @@
+{
+  "name": "@starter-kit/types",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "pnpm with-env tsup ./brand/index.ts ./product/index.ts ./category/index.ts ./address/index.ts ./employee/index.ts ./payment/index.ts ./signnow/index.ts ./embed/index.ts --format esm --target node16 --dts --outDir ./dist",
+    "clean": "git clean -xdf .cache .turbo dist node_modules && rm -rf .turbo .cache dist",
+    "dev": "pnpm with-env tsup ./brand/index.ts ./product/index.ts ./category/index.ts ./address/index.ts ./employee/index.ts ./payment/index.ts ./signnow/index.ts ./embed/index.ts --format esm --target node16 --dts --outDir dist --watch",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "with-env": "dotenv -e ../../.env --",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "@starter-kit/env": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@starter-kit/eslint-config": "workspace:*",
+    "@starter-kit/prettier-config": "workspace:*",
+    "@starter-kit/tsconfig": "workspace:*",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
+  },
+  "prettier": "@starter-kit/prettier-config"
+}

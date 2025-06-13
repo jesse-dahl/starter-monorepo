@@ -1,0 +1,9 @@
+{
+  "extends": "@starter-kit/tsconfig/internal-package.json",
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "checkJs": false
+  },
+  "include": ["employee"],
+  "exclude": ["node_modules"]
+}

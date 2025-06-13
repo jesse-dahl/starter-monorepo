@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "main": "src/routes.ts",
   "dependencies": {
+    "@starter-kit/env": "workspace:*",
     "fastify-plugin": "catalog:",
     "zod": "catalog:",
     "@fastify/swagger": "catalog:",
     "@fastify/swagger-ui": "catalog:",
-    "fastify-type-provider-zod": "^1.3.1"
+    "fastify-type-provider-zod": "catalog:"
   },
   "devDependencies": {
     "typescript": "catalog:"
