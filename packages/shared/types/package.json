@@ -11,9 +11,9 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "pnpm with-env tsup ./employee/index.ts --format esm --target node16 --dts --outDir ./dist",
+    "build": "pnpm with-env tsup ./employee/index.ts --format esm --target node16 --dts --outDir ./dist/employee",
     "clean": "git clean -xdf .cache .turbo dist node_modules && rm -rf .turbo .cache dist",
-    "dev": "pnpm with-env tsup ./employee/index.ts --format esm --target node16 --dts --outDir dist --watch",
+    "dev": "pnpm with-env tsup ./employee/index.ts --format esm --target node16 --dts --outDir ./dist/employee --watch",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
     "with-env": "dotenv -e ../../.env --",

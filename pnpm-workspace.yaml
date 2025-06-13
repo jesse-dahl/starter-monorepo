@@ -2,7 +2,6 @@ packages:
   - 'apps/*'
   - 'packages/*'
   - 'packages/shared/types'
-  - 'packages/shared/transformers'
   - 'tooling/*'
 catalog:
   # Auth

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "clean": "git clean -xdf .cache .turbo node_modules && rm -rf .turbo .cache node_modules dist false",
     "lint": "eslint .",
     "preview": "vite preview"
   },
