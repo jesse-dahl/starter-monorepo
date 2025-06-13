@@ -1,0 +1,15 @@
+{
+  "name": "@starter-kit/api",
+  "version": "1.0.0",
+  "main": "src/routes.ts",
+  "dependencies": {
+    "fastify-plugin": "catalog:",
+    "zod": "catalog:",
+    "@fastify/swagger": "catalog:",
+    "@fastify/swagger-ui": "catalog:",
+    "fastify-type-provider-zod": "^1.3.1"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  }
+}

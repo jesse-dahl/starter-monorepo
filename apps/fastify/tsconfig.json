@@ -1,0 +1,22 @@
+{
+  "extends": "@starter-kit/tsconfig/base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "verbatimModuleSyntax": true,
+    "allowImportingTsExtensions": false,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@starter-kit/api/*": ["../../packages/api/src/*"]
+    },
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": ["node_modules"]
+}
