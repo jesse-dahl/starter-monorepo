@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.80.7",
     "react": "catalog:react19",
     "react-dom": "catalog:react19"
   },
@@ -20,6 +21,7 @@
     "@starter-kit/prettier-config": "workspace:*",
     "@starter-kit/tsconfig": "workspace:*",
     "@starter-kit/tailwind-config": "workspace:*",
+    "@starter-kit/ui-shadcn": "workspace:*",
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",
     "@vitejs/plugin-react-swc": "^3.9.0",
