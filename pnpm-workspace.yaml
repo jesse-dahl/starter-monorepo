@@ -3,8 +3,15 @@ packages:
   - 'packages/*'
   - 'packages/shared/types'
   - 'packages/shared/transformers'
+  - 'packages/ui/shadcn'
   - 'tooling/*'
 catalog:
+  # UI
+  class-variance-authority: ^0.7.1
+  clsx: ^2.1.1
+  lucide-react: ^0.515.0
+  tailwind-merge: ^3.3.1
+  tw-animate-css: ^1.3.4
   # Auth
   "@auth/core": 0.37.2
   "@auth/drizzle-adapter": ~1.7.4

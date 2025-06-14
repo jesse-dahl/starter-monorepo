@@ -1,0 +1,40 @@
+{
+  "name": "@starter-kit/ui-shadcn",
+  "version": "1.0.0",
+  "description": "Reusable UI components built on shadcn/ui",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup ./src --format esm --target node16 --dts --outDir ./dist",
+    "clean": "git clean -xdf .cache .turbo node_modules && rm -rf dist",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "dependencies": {
+    "class-variance-authority": "catalog:",
+    "lucide-react": "catalog:",
+    "tw-animate-css": "catalog:",
+    "clsx": "catalog:",
+    "tailwind-merge": "catalog:"
+  },
+  "peerDependencies": {
+    "react": "catalog:react19",
+    "react-dom": "catalog:react19"
+  },
+  "devDependencies": {
+    "@starter-kit/eslint-config": "workspace:*",
+    "@starter-kit/prettier-config": "workspace:*",
+    "@starter-kit/tailwind-config": "workspace:*",
+    "@starter-kit/tsconfig": "workspace:*",
+    "@types/react": "catalog:react19",
+    "typescript": "catalog:",
+    "tsup": "catalog:"
+  }
+}
