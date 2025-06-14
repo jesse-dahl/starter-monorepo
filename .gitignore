@@ -36,7 +36,6 @@ false
 # misc
 .DS_Store
 *.pem
-flote-docs/
 .cursor/
 **/*.md
 !README.md
