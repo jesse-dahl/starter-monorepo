@@ -18,11 +18,36 @@
     "test": "echo \"No tests yet\" && exit 0"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.1.1",
+    "@radix-ui/react-accordion": "^1.2.11",
+    "@radix-ui/react-checkbox": "^1.3.2",
+    "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-dropdown-menu": "^2.1.15",
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-menubar": "^1.1.15",
+    "@radix-ui/react-popover": "^1.1.14",
+    "@radix-ui/react-progress": "^1.1.7",
+    "@radix-ui/react-radio-group": "^1.3.7",
+    "@radix-ui/react-scroll-area": "^1.2.9",
+    "@radix-ui/react-select": "^2.2.5",
+    "@radix-ui/react-separator": "^1.1.7",
+    "@radix-ui/react-slider": "^1.3.5",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-switch": "^1.2.5",
+    "@radix-ui/react-tabs": "^1.1.12",
+    "@radix-ui/react-tooltip": "^1.2.7",
     "class-variance-authority": "catalog:",
-    "lucide-react": "catalog:",
-    "tw-animate-css": "catalog:",
     "clsx": "catalog:",
-    "tailwind-merge": "catalog:"
+    "cmdk": "^1.1.1",
+    "input-otp": "^1.4.2",
+    "lucide-react": "catalog:",
+    "next-themes": "^0.4.6",
+    "react-hook-form": "^7.57.0",
+    "sonner": "^2.0.5",
+    "tailwind-merge": "catalog:",
+    "tw-animate-css": "catalog:",
+    "vaul": "^1.1.2",
+    "zod": "^3.25.64"
   },
   "peerDependencies": {
     "react": "catalog:react19",
@@ -34,7 +59,7 @@
     "@starter-kit/tailwind-config": "workspace:*",
     "@starter-kit/tsconfig": "workspace:*",
     "@types/react": "catalog:react19",
-    "typescript": "catalog:",
-    "tsup": "catalog:"
+    "tsup": "catalog:",
+    "typescript": "catalog:"
   }
 }
