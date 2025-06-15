@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@starter-kit/env": "workspace:*",
+    "@starter-kit/logger": "workspace:*",
     "@starter-kit/repositories": "workspace:*",
     "@starter-kit/services": "workspace:*",
     "@starter-kit/types": "workspace:*",
