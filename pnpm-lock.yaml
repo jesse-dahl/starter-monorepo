@@ -472,6 +472,9 @@ importers:
 
   packages/services:
     dependencies:
+      '@starter-kit/auth':
+        specifier: workspace:*
+        version: link:../auth
       '@starter-kit/env':
         specifier: workspace:*
         version: link:../../tooling/env

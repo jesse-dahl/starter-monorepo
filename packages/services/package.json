@@ -24,6 +24,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@starter-kit/auth": "workspace:*",
     "@starter-kit/env": "workspace:*",
     "@starter-kit/logger": "workspace:*",
     "@starter-kit/redis": "workspace:*",
