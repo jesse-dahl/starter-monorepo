@@ -3,8 +3,8 @@ import { Pipeline, LLM, LLMConfig } from '../types/ai.types';
 import { handleAsyncTask, createPipelineLogger, handlePipelineError } from '../utils/pipeline.utils';
 
 // Tasks
-import { extractUserInfoTask } from '../tasks/extract-user-info.task';
-import { createWelcomeEmailTask } from '../tasks/example.task';
+import { extractUserInfoTask } from '../tasks/example-tasks/extract-user-info.task';
+import { createWelcomeEmailTask } from '../tasks/example-tasks/welcome-email.task';
 
 /**
  * Input schema for the user onboarding pipeline

@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { logger } from '@starter-kit/logger';
-import { Task, LLM, LLMConfig, Prompt, AIError, LLMGenerationError, TaskValidationError } from '../types/ai.types';
-import { EXTRACT_USER_INFO_SYSTEM, EXTRACT_USER_INFO_USER } from '../prompts';
-import { extractJson, safeJsonParse } from '../utils/llm.utils';
+import { Task, LLM, LLMConfig, Prompt, AIError, LLMGenerationError, TaskValidationError } from '../../types/ai.types';
+import { EXTRACT_USER_INFO_SYSTEM, EXTRACT_USER_INFO_USER } from '../../prompts';
+import { extractJson, safeJsonParse } from '../../utils/llm.utils';
 
 /**
  * Input schema for user information extraction task

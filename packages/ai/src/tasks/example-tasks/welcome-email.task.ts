@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { logger } from '@starter-kit/logger';
-import { Task, Prompt, AIError, LLMGenerationError, TaskValidationError } from '../types/ai.types';
-import { welcomePrompt } from '../prompts';
-import { extractJson, safeJsonParse } from '../utils/llm.utils';
+import { Task, Prompt, AIError, LLMGenerationError, TaskValidationError } from '../../types/ai.types';
+import { welcomePrompt } from '../../prompts';
+import { extractJson, safeJsonParse } from '../../utils/llm.utils';
 
 /**
  * Input schema for the welcome email generation task

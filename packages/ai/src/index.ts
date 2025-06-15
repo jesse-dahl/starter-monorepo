@@ -13,8 +13,8 @@ export * from './utils/llm.utils';
 export * from './utils/pipeline.utils';
 
 // Example tasks (for reference and extension)
-export * from './tasks/example.task';
-export * from './tasks/extract-user-info.task';
+export * from './tasks/example-tasks/welcome-email.task';
+export * from './tasks/example-tasks/extract-user-info.task';
 
 // Example pipelines (for reference and extension)
 export { userOnboardingPipeline } from './pipelines/example.pipeline';
