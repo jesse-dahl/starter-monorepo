@@ -2,6 +2,8 @@ import supabase, { supabaseAdmin } from '@starter-kit/supabase/client';
 import { createLogger } from '@starter-kit/logger';
 import { TokenPair } from '../types';
 import { toTokenPair } from '../tokens';
+import { sendOtpEmail } from '@starter-kit/resend';
+import { withRedis } from '@starter-kit/redis';
 
 const logger = createLogger({ service: 'auth-supabase-provider' });
 
@@ -23,20 +25,54 @@ export async function requestOtpEmail(
   email: string,
   options: SignInWithOtpOptions = {}
 ): Promise<{ success: boolean; error?: string }> {
-  const { error } = await supabase.auth.signInWithOtp({
+  // Generate the OTP without sending Supabase's default email. We use
+  // the Admin API so we get the token payload back and can pass it along
+  // to Resend. The type `magiclink` returns both `action_link` (for links)
+  // and a six-digit `token` used for OTP flows.
+  const { data, error } = await supabaseAdmin.auth.admin.generateLink({
+    type: 'magiclink',
     email,
     options: {
-      emailRedirectTo: options.emailRedirectTo,
       shouldCreateUser: options.shouldCreateUser ?? true,
-      emailOtpType: 'code', // ensures a 6-digit code email, not magic-link
+      redirect_to: options.emailRedirectTo,
     } as any,
-  });
+  } as any);
 
-  if (error) {
-    logger.error('Failed to request OTP', { error });
-    return { success: false, error: error.message };
+  if (error || !data) {
+    logger.error('Failed to generate OTP link', { error });
+    return { success: false, error: error?.message || 'Link generation failed' };
   }
-  return { success: true };
+
+  // The OTP token is available on `data.properties.token`
+  // Fallback to empty string if Supabase changes shape – the template will reflect it.
+  const token = (data as any).properties?.token ?? '';
+
+  try {
+    // First cache OTP in Redis (10-minute TTL). If this fails we bail out so
+    // the user never receives a code we cannot later validate.
+    const redisSetOk = await withRedis(async (client) => {
+      try {
+        await client.set(`otp:${email}`, token, 'EX', 600);
+        return true;
+      } catch (err) {
+        logger.error('Failed to cache OTP in Redis', { error: err });
+        return false;
+      }
+    });
+
+    if (!redisSetOk) {
+      return { success: false, error: 'Internal error – OTP cache failed' };
+    }
+
+    // Now dispatch the email
+    await sendOtpEmail(email, token);
+
+    logger.debug('Sent OTP email via Resend', { email });
+    return { success: true };
+  } catch (sendErr: any) {
+    logger.error('Failed to dispatch Resend email', { error: sendErr });
+    return { success: false, error: sendErr?.message || 'Email dispatch failed' };
+  }
 }
 
 /**
@@ -55,6 +91,19 @@ export async function verifyOtpCode(
   if (error || !data?.session) {
     if (error) logger.warn('Invalid OTP', { error });
     return null;
+  }
+
+  // Compare with cached token (if exists) to guard against code reuse/incorrect code
+  try {
+    const match = await withRedis(async (client) => client.get(`otp:${email}`));
+    if (!match || match !== code) {
+      logger.warn('OTP mismatch or expired in Redis', { email });
+      return null;
+    }
+    // delete cached token after successful usage
+    await withRedis(async (client) => client.del(`otp:${email}`));
+  } catch (redisErr) {
+    logger.warn('Redis lookup failed', { error: redisErr });
   }
 
   return toTokenPair(data.session);

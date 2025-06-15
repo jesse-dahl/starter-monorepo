@@ -4,7 +4,15 @@
   "description": "",
   "private": true,
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
     "./client": {
       "types": "./dist/client.d.ts",
       "import": "./dist/client.js",
@@ -13,7 +21,7 @@
     }
   },
   "scripts": {
-    "build": "pnpm with-env tsup ./src/client.ts ./src/templates.ts --format esm --target node16 --dts --outDir ./dist",
+    "build": "pnpm with-env tsup ./src --format esm --target node18 --dts --outDir ./dist",
     "clean": "git clean -xdf .cache .turbo node_modules && rm -rf .turbo .cache node_modules",
     "test": "echo \"Error: no test specified\" && exit 1",
     "with-env": "dotenv -e ../../.env --"

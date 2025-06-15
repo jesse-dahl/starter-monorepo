@@ -350,6 +350,12 @@ importers:
       '@starter-kit/logger':
         specifier: workspace:*
         version: link:../logger
+      '@starter-kit/redis':
+        specifier: workspace:*
+        version: link:../redis
+      '@starter-kit/resend':
+        specifier: workspace:*
+        version: link:../resend
       '@starter-kit/supabase':
         specifier: workspace:*
         version: link:../supabase

@@ -21,6 +21,8 @@
     "@starter-kit/env": "workspace:*",
     "@starter-kit/supabase": "workspace:*",
     "@starter-kit/logger": "workspace:*",
+    "@starter-kit/redis": "workspace:*",
+    "@starter-kit/resend": "workspace:*",
     "jose": "^5.2.0",
     "zod": "catalog:"
   },
