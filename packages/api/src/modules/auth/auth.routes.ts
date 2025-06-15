@@ -16,7 +16,6 @@ import {
   ACCESS_TOKEN_COOKIE,
   REFRESH_TOKEN_COOKIE,
 } from '@starter-kit/auth';
-import '@fastify/cookie';
 
 export async function authRoutes(app: FastifyInstance) {
   app.setValidatorCompiler(validatorCompiler);
