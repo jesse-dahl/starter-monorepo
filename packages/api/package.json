@@ -18,6 +18,7 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
+    "@starter-kit/auth": "workspace:*",
     "@starter-kit/env": "workspace:*",
     "@starter-kit/logger": "workspace:*",
     "@starter-kit/repositories": "workspace:*",

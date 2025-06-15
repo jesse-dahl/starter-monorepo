@@ -29,4 +29,7 @@ export const authService: IAuthService = {
   verifyOtpCode,
   refreshSession,
   getUserFromAccessToken,
-}; 
+};
+
+// Re-export cookie helpers and constants so upper layers don't depend on @starter-kit/auth directly
+// export { buildAccessTokenCookie, buildRefreshTokenCookie, ACCESS_TOKEN_COOKIE, REFRESH_TOKEN_COOKIE } from "@starter-kit/auth"; 

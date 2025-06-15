@@ -301,6 +301,9 @@ importers:
       '@fastify/swagger-ui':
         specifier: 'catalog:'
         version: 5.2.3
+      '@starter-kit/auth':
+        specifier: workspace:*
+        version: link:../auth
       '@starter-kit/env':
         specifier: workspace:*
         version: link:../../tooling/env
