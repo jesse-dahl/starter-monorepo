@@ -273,6 +273,9 @@ importers:
       openai:
         specifier: ^5.3.0
         version: 5.3.0(ws@8.18.2)(zod@3.25.64)
+      zod:
+        specifier: 'catalog:'
+        version: 3.25.64
     devDependencies:
       '@starter-kit/env':
         specifier: workspace:*
@@ -332,6 +335,34 @@ importers:
       '@starter-kit/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.3
+
+  packages/auth:
+    dependencies:
+      '@starter-kit/env':
+        specifier: workspace:*
+        version: link:../../tooling/env
+      '@starter-kit/logger':
+        specifier: workspace:*
+        version: link:../logger
+      '@starter-kit/supabase':
+        specifier: workspace:*
+        version: link:../supabase
+      jose:
+        specifier: ^5.2.0
+        version: 5.10.0
+      zod:
+        specifier: 'catalog:'
+        version: 3.25.64
+    devDependencies:
+      '@starter-kit/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
+      tsup:
+        specifier: 'catalog:'
+        version: 8.5.0(@swc/core@1.12.1)(jiti@1.21.7)(postcss@8.5.5)(tsx@4.20.3)(typescript@5.8.3)(yaml@2.8.0)
       typescript:
         specifier: 'catalog:'
         version: 5.8.3
@@ -3218,6 +3249,9 @@ packages:
   jiti@1.21.7:
     resolution: {integrity: sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==}
     hasBin: true
+
+  jose@5.10.0:
+    resolution: {integrity: sha512-s+3Al/p9g32Iq+oqXxkW//7jk2Vig6FF1CFqzVXoTUXt2qz89YWbL+OwS17NFYEvxC35n0FKeGO2LGYSxeM2Gg==}
 
   joycon@3.1.1:
     resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
@@ -7161,6 +7195,8 @@ snapshots:
       '@isaacs/cliui': 8.0.2
 
   jiti@1.21.7: {}
+
+  jose@5.10.0: {}
 
   joycon@3.1.1: {}
 

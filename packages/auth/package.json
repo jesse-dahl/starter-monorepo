@@ -1,0 +1,32 @@
+{
+  "name": "@starter-kit/auth",
+  "version": "1.0.0",
+  "description": "Authentication domain utilities (token handling, Supabase provider, cookie helpers)",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup ./src --format esm --target node18 --dts --outDir ./dist",
+    "clean": "git clean -xdf .cache .turbo node_modules && rm -rf dist",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "dependencies": {
+    "@starter-kit/env": "workspace:*",
+    "@starter-kit/supabase": "workspace:*",
+    "@starter-kit/logger": "workspace:*",
+    "jose": "^5.2.0",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@starter-kit/tsconfig": "workspace:*",
+    "typescript": "catalog:",
+    "tsup": "catalog:"
+  }
+} 
